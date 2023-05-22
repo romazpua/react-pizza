@@ -13,9 +13,10 @@ const Categories = ( { items } ) => {
             <ul>
                 <li className={ activeItem === null ? 'active' : '' } onClick={ () => setActiveItem( null ) }>Все</li>
                 {
-                    items && items.map( ( item, index ) => <li className={ activeItem === index ? 'active' : '' }
-                                                               onClick={ () => onSelectItem( index ) }
-                                                               key={ `${ item }_${ index }` }>{ item }</li> )
+                    items && items.map(
+                        ( item, index ) => <li className={ activeItem === index ? 'active' : '' }
+                                               onClick={ () => onSelectItem( index ) }
+                                               key={ `${ item }_${ index }` }>{ item }</li> )
                 }
             </ul>
         </div>
