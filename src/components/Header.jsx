@@ -18,7 +18,7 @@ function Header() {
                 <div className="header__cart">
                     <Link to={ '/cart' }>
                         <Button
-                            onClick={ () => alert( 'Hello' ) }
+                            onClick={ () => console.log( 'Hello' ) }
                             className={ 'button--cart' }>
                             <span>520 ₽</span>
                             <div className="button__delimiter"></div>
