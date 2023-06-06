@@ -55,7 +55,7 @@ const Home = () => {
                         ?
                         items.map( ( obj ) => <PizzaBlock onClickAddPizza={ handleAddPizzaToCart }
                                                           key={ obj.id }
-                                                          addedCount={cartItems[obj.id]?.length}
+                                                          addedCount={cartItems[obj.id]?.items.length}
                                                           { ...obj }/> )
                         :
                         Array( 10 ).fill( 0 ).map( ( el, index ) => <LoadingBlock key={ index }/> )
