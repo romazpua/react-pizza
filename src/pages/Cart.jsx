@@ -1,9 +1,10 @@
 import React from 'react';
 import CartItem from '../components/CartItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart, removeCartItem } from '../redux/actions/cart';
+import { clearCart, minusCartItem, plusCartItem, removeCartItem } from '../redux/actions/cart';
 import emptyCart from '../assets/img/empty-cart.png'
 import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 
 const Cart = () => {
 
@@ -20,6 +21,14 @@ const Cart = () => {
 
     const onRemoveItem = ( id ) => {
         if ( window.confirm( 'Are you sure?' ) ) dispatch( removeCartItem( id ) )
+    }
+
+    const onPlusCartItem = id => dispatch( plusCartItem( id ) )
+
+    const onMinusCartItem = id => dispatch( minusCartItem( id ) )
+
+    const onClickOrder = () => {
+        alert('Thank you!')
     }
 
     return (
@@ -77,7 +86,9 @@ const Cart = () => {
                                                                                  imageUrl={ obj.imageUrl }
                                                                                  totalPrice={ items[ obj.id ].totalPrice }
                                                                                  totalCount={ items[ obj.id ].items.length }
-                                                                                 onRemove={ onRemoveItem }/> )
+                                                                                 onRemove={ onRemoveItem }
+                                                                                 onPlus={ onPlusCartItem }
+                                                                                 onMinus={ onMinusCartItem }/> )
                                 }
                                 {/*<CartItem name={ 'Сырный цыпленок' } type={ 'тонкое' } size={ 26 }/>*/ }
                             </div>
@@ -93,19 +104,20 @@ const Cart = () => {
                                             <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5"
                                                   strokeLinecap="round" strokeLinejoin="round"/>
                                         </svg>
-
-                                        <span>Вернуться назад</span>
+                                        <Link to="/">
+                                            <span>Вернуться назад</span>
+                                        </Link>
                                     </a>
-                                    <div className="button pay-btn">
+                                    <Button onClick={ onClickOrder } className="pay-btn">
                                         <span>Оплатить сейчас</span>
-                                    </div>
+                                    </Button>
                                 </div>
                             </div>
                         </div>
                         :
                         <div className="container container--cart">
                             <div className="cart cart--empty">
-                                <h2>Корзина пустая <icon>😕</icon></h2>
+                                <h2>Корзина пустая <i>😕</i></h2>
                                 <p>
                                     Вероятней всего, вы не заказывали ещё пиццу.<br/>
                                     Для того, чтобы заказать пиццу, перейди на главную страницу.
